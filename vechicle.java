@@ -1,0 +1,80 @@
+```java
+import java.util.*;
+
+class Vehicle {
+    String vehicleNumber;
+    double rentPerDay;
+
+    Vehicle(String vehicleNumber, double rentPerDay) {
+        this.vehicleNumber = vehicleNumber;
+        this.rentPerDay = rentPerDay;
+    }
+
+    double calculateRent(int days) {
+        return rentPerDay * days;
+    }
+}
+
+class Car extends Vehicle {
+    Car(String vehicleNumber, double rentPerDay) {
+        super(vehicleNumber, rentPerDay);
+    }
+
+    @Override
+    double calculateRent(int days) {
+        return rentPerDay * days;
+    }
+}
+
+class Bike extends Vehicle {
+    Bike(String vehicleNumber, double rentPerDay) {
+        super(vehicleNumber, rentPerDay);
+    }
+
+    @Override
+    double calculateRent(int days) {
+        return rentPerDay * days * 0.90;
+    }
+}
+
+class Truck extends Vehicle {
+    Truck(String vehicleNumber, double rentPerDay) {
+        super(vehicleNumber, rentPerDay);
+    }
+
+    @Override
+    double calculateRent(int days) {
+        return rentPerDay * days * 1.20;
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        for (int i = 0; i < n; i++) {
+            int type = sc.nextInt();
+            String number = sc.next();
+            double rent = sc.nextDouble();
+            int days = sc.nextInt();
+
+            Vehicle v;
+
+            if (type == 1) {
+                v = new Car(number, rent);
+            } else if (type == 2) {
+                v = new Bike(number, rent);
+            } else {
+                v = new Truck(number, rent);
+            }
+
+            System.out.printf("%s %.2f%n",
+                    v.vehicleNumber, v.calculateRent(days));
+        }
+
+        sc.close();
+    }
+}
+```
